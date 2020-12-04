@@ -10,5 +10,5 @@ newest_android = android_scraper.get_newest()
 print("Android: " + str(newest_android))
 
 updater = LocalUpdater()
-updater.update_kotlin(newest_kotlin)
-updater.update_android(newest_android)
+updater.update("kotlin", newest_kotlin, lambda old, new: new != old)
+updater.update("android", newest_android, lambda old, new: new > int(old))
