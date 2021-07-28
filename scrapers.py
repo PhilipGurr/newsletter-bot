@@ -43,6 +43,6 @@ class KotlinScraper(Scraper):
         content = requests.get(self.url, headers=self.standard_headers).content
         soup = BeautifulSoup(content, "html.parser")
 
-        postpattern = re.compile('post-[0-9]+')
-        newest_post = soup.find_all('article', {'id': postpattern})[0]
-        return newest_post.get('id')
+        postpattern = re.compile('[0-9]+')
+        newest_post = soup.find_all('div', {'post_id': postpattern})[0]
+        return newest_post.get('post_id')
